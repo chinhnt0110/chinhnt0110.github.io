@@ -24,7 +24,7 @@ label-studio start -db label_studio_postgresql --host http://xxx.xxx.xxx.x:8080
 
 - For Community edition: Everyone with an account in Label Studio has access to the same functionality, they can access to all projects on tool.
 
-# Label configuration
+# Set up the labeling interface
 
 - All labeling activities in Label Studio occur in the context of a project. Hence, it is essential to set up the labeling interface and labeling configuration for your project.
 
@@ -37,7 +37,7 @@ label-studio start -db label_studio_postgresql --host http://xxx.xxx.xxx.x:8080
   - (Optional) Choose new colors for the labels.
 
 - For OCR tasks you can follow this template: 
-```
+```xml
 <View>
   <View style="display:flex;align-items:start;gap:8px;flex-direction:column-reverse"><Image name="image" value="$ocr" zoom="true" zoomControl="true" rotateControl="true"/>
     <View><Filter toName="label" minlength="0" name="filter"/>
@@ -59,7 +59,7 @@ label-studio start -db label_studio_postgresql --host http://xxx.xxx.xxx.x:8080
 </View>
 ```
 
-Define environment variable in .env 
+# Create environment variable in .env 
 ```
 LABEL_STUDIO_URL=xxx.xxx.xxx.x
 API_KEY=dae462example21dc3278ab945cba5324a81bc0a #copy access token from http://xxx.xxx.xxx.x:8080/user/account
@@ -82,7 +82,7 @@ API_KEY=dae462example21dc3278ab945cba5324a81bc0a #copy access token from http://
 - The JSON format for pre-annotations must match the labeling configuration (./label_config.xml) used for your data labeling project.
 
 - Here is an example of input JSON file for OCR task:
-```
+```JSON
 [{
    "data": {
       "ocr": "s3://data/upload/image1.jpg"
@@ -205,7 +205,7 @@ API_KEY=dae462example21dc3278ab945cba5324a81bc0a #copy access token from http://
 
 `import_data_to_label_studio.py`:
 
-```
+```python
 import os
 import json
 from pathlib import Path
@@ -246,6 +246,17 @@ if __name__=='__main__':
 Run
 `python import_data_to_label_studio.py input_dir /path/to/input_dir config_file /path/to/config_file`
 
+# Label and annotate data
+1. Open a project in Label Studio and optionally filter or sort the data.
+2. Click `Label All Tasks` to start labeling.
+3. Label the data:
+  3.1. Select the label you want to apply to the region.
+  3.2. Click the image and press your mouse to apply the label to the region.
+  3.3. Click Submit to submit the completed annotation and move on to the next task.
+5. Follow the project instructions for labeling and deciding whether to skip tasks.
+6. Click the project name to return to the data manager.
+
+
 # Export data
 
 text file example:
@@ -257,7 +268,7 @@ test_003
 
 `export_annotation_label_studio.py`:
 
-```
+```python
 import os
 from dotenv import load_dotenv
 load_dotenv()
