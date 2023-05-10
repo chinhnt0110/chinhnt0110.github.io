@@ -39,23 +39,19 @@ label-studio start -db label_studio_postgresql --host http://xxx.xxx.xxx.x:8080
 - For OCR tasks you can follow this template: 
 ```xml
 <View>
-  <View style="display:flex;align-items:start;gap:8px;flex-direction:column-reverse"><Image name="image" value="$ocr" zoom="true" zoomControl="true" rotateControl="true"/>
-    <View><Filter toName="label" minlength="0" name="filter"/>
-      <Labels name="label" toName="image" showInline="true">
-        <Label value="signboard" background="green"/>
-        <Label value="name" background="blue"/>
-        <Label value="address" background="#F759AB"/>
-        <Label value="tel" background="#FFA39E"/>
-        <Label value="website" background="#D4380D"/>
-        <Label value="logo" background="#FFC069"/>
-      </Labels>
-    </View>
-  </View>
+  <View style="display:flex;align-items:start;gap:8px;flex-direction:row"><Image name="image" value="$image" zoom="true" rotateControl="true" zoomControl="true"/><RectangleLabels name="label" toName="image" showInline="false">
+    <Label value="signboard" background="green"/>
+    <Label value="brand" background="blue"/>
+    <Label value="address" background="red"/>
+    <Label value="telephone" background="orange"/>
+    <Label value="website" background="violet"/>
+    <Label value="logo" background="brown"/>
+    <Label value="text" background="Aquamarine"/>
+  </RectangleLabels>
   
-  <Rectangle name="bbox" toName="image" strokeWidth="3"/>
-  <Polygon name="poly" toName="image" strokeWidth="3"/>
-
   <TextArea name="transcription" toName="image" editable="true" perRegion="true" required="false" maxSubmissions="1" rows="5" placeholder="Recognized Text" displayMode="region-list"/>
+
+  </View>
 </View>
 ```
 
