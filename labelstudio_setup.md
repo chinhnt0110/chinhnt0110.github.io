@@ -40,9 +40,7 @@ label-studio start -db label_studio_postgresql --host http://xxx.xxx.xxx.x:8080
 ```xml
 <View>
   <View style="display:flex;align-items:start;gap:8px;flex-direction:column-reverse"><Image name="image" value="$image" zoom="true" rotateControl="true" zoomControl="true"/>
-  	<PolygonLabels name="polylabel" toName="image"
-                 strokeWidth="3" pointSize="small"
-                 opacity="0.9">
+  	<PolygonLabels name="polylabel" toName="image" strokeWidth="3" pointSize="small" opacity="0.9">
       <Label value="signboard" background="green"/>
     </PolygonLabels>
     
@@ -51,8 +49,10 @@ label-studio start -db label_studio_postgresql --host http://xxx.xxx.xxx.x:8080
       <Label value="address" background="red"/>
       <Label value="telephone" background="orange"/>
       <Label value="website" background="violet"/>
+      <Label value="sns" background="indigo"/>
+      <Label value="email" background="khaki"/>
       <Label value="logo" background="brown"/>
-      <Label value="text" background="Aquamarine"/>
+      <Label value="others" background="Aquamarine"/>
   	</RectangleLabels>
   
     <TextArea name="transcription" toName="image" editable="true" perRegion="true" required="false" maxSubmissions="1" rows="5" placeholder="Recognized Text" displayMode="region-list"/>
